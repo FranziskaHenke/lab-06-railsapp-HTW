@@ -2,7 +2,7 @@
 
 <p>
   <strong>Customer:</strong>
-  <%= @order.customer_id %>
+  <%= @order.customer.name %>
 </p>
 
 <p>
@@ -14,6 +14,12 @@
   <strong>Status:</strong>
   <%= @order.status %>
 </p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @order.price %>
+</p>
+
 
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>

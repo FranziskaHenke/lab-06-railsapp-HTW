@@ -17,4 +17,17 @@ describe "customer page", :type => :feature do
     order = Order.last
     expect(order.customer).to eq @customer
   end
+
+  it "shows customer's orders" do
+  visit "/customers/#{@customer.id}"
+  expect(page).to have_content (:order)
+    
+  end
+  it "shows customer's total" do
+  visit "/customers/#{@customer.id}"
+  sum = @customer.orders.sum(:price)
+  expect(page).to have_content (sum)
+    
+  end
+
 end

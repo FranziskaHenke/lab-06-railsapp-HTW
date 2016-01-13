@@ -9,6 +9,43 @@
   <strong>Discount:</strong>
   <%= @customer.discount %>
 </p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Customer</th>
+      <th>ID</th>
+      <th>Discount</th>
+      <th>Placed on</th>
+      <th>Status</th>
+      <th>Price</th>
+      <th colspan="6"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @customer.orders.each do |order| %>
+      <tr>
+      	<td><%= @customer.name %></td>
+      	<td><%= order.customer_id %></td>
+        <td><%= @customer.discount %></td>        
+        <td><%= order.placed_on %></td>
+        <td><%= order.status %></td>
+        <td><%= order.price %></td>
+        <td><%= link_to 'Show', order %></td>
+        <td><%= link_to 'Edit', edit_order_path(order) %></td>
+        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p>
+  <strong>Orders Sum:</strong>  
+  <%= @customer.total %>
+</p>
+
+
 <%= link_to 'New Order', new_order_path(customer: @customer) %>
 
 <%= link_to 'Edit', edit_customer_path(@customer) %> |
